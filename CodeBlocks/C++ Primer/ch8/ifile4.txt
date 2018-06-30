@@ -1,0 +1,448 @@
+    • Implementation of System Calls
+    • Implementation of I/O System Calls
+    • Simulation of UNIX Commands
+    • Implementation of FCFS Scheduling
+    • Implementation of SJF Scheduling
+    • Implementation of Priority Scheduling
+    • Implementation of Round Robin Scheduling
+    • Inter Process Communication Using Shared Memory
+    • Inter Process Communication Using Message Queues
+    • Producer – Consumer Problem Using Semaphores
+    • Memory Management Schemes – I
+    • Memory Management Schemes – II
+
+1. IP detection (IP or not?, Public/private, Class Identification)
+2. Humming Distance
+3. Checksum
+4. Cyclic Redundancy Check (CRC)
+5. Parity Bit (Even/Odd)
+
+< — Directs the contents of a fi le to the command. In most cases, this is the default
+action expected by the command and the use of the character is optional; using
+less bigfile is the same as less < bigfile.
+> — Directs the standard output of a command to a fi le. If the fi le exists, the
+content of that fi le is overwritten.
+2> — Directs standard error (error messages) to the file.
+&> — Directs both standard output and standard error to the file.
+>> — Directs the output of a command to a file, adding the output to the end of the existing file.
+
+| less - to see a text file line by line
+
+echo $PS1 - defines shell prompt
+     $MAIL - location of mail box
+     $SHELL - Shell location
+
+BASH - This contains the full pathname of the bash command. /bin/bash.
+
+BASH_VERSION - represents the current version of the bash command.
+
+EUID - This is the effective user ID number of the current user. based on the user’s entry in the /etc/passwd file.
+
+FCEDIT - If set, this variable indicates the text editor used by the fc command. If this variable isn’t set, the vi command is used.
+
+HISTFILE - This is the location of your history file. $HOME/.bash_history.
+
+HISTFILESIZE - The oldest commands are discarded. The default value is 1000.
+
+HISTCMD - This returns the number of the current command in the history list.
+
+HOME - This is your home directory.
+
+HOSTTYPE - the computer architecture on which the Linux system is running.
+
+MAIL - This is the location of your mailbox file. /var/spool/mail directory.
+
+OLDPWD - The directory that was the working directory before you changed to the current working directory.
+
+OSTYPE - This name identifies the current operating system. For Fedora Linux, the
+
+OSTYPE - value is either linux or linux-gnu.
+
+PATH - This is the colon-separated list of directories used to find commands that you type. Typically includes the following: /bin:/usr/bin:/usr/local/
+bin:/usr/bin/X11:/usr/X11R6/bin:~/bin. 
+
+PPID - This is the process ID of the command that started the current shell.
+
+PROMPT_COMMAND - This can be set to a command name that is run each time before your shell
+prompt is displayed. Setting PROMPT_COMMAND=date lists the current date/
+time before the prompt appears.
+
+PS1 - This sets the value of your shell prompt. with the variables PS2, PS3, and so on.
+PWD - This is the directory that is assigned as your current directory. 
+
+RANDOM - Accessing this variable causes a random number to be generated. The
+number is between 0 and 99999.
+SECONDS - This is the number of seconds since the time the shell was started.
+
+SHLVL - This is the number of shell levels associated with the current shell session.
+When you log in to the shell, the SHLVL is 1. Each time you start a new bash
+command (by, for example, using su to become a new user, or by simply
+typing bash), this number is incremented.
+
+TMOUT - This can be set to a number representing the number of seconds the shell
+can be idle without receiving input. After the number of seconds is
+reached, the shell exits.
+
+$(ls | wc -w) - For directory file count
+lpr & - run process in background
+; - chain together multiple commands
+Ctrl+F - Character forward Go forward one character.
+Ctrl+B - Character backward Go backward one character.
+Alt+F - Word forward Go forward one word.
+Alt+B - Word backward Go backward one word.
+Ctrl+A - Beginning of line Go to the beginning of the current line.
+Ctrl+E - End of line Go to the end of the line.
+Ctrl+L - Clear screen Clear screen and leave line at the top of the screen.
+
+Ctrl+D - Delete current Delete the current character.
+Backspace - Delete previous Delete the previous character.
+Ctrl+T - Transpose character Switch positions of current and previous characters.
+Alt+T - Transpose words Switch positions of current and previous words.
+Alt+U - Uppercase word Change the current word to uppercase.
+Alt+L - Lowercase word Change the current word to lowercase.
+Alt+C - Capitalize word Change the current word to an initial capital.
+Ctrl+V - Insert special character Add a special character. For example, to add a Tab
+character, press Ctrl+V+Tab.
+Ctrl+K - Cut end of line Cut text to the end of the line.
+Ctrl+U - Cut beginning of line Cut text to the beginning of the line.
+Ctrl+W - Cut previous word Cut the word located behind the cursor.
+Alt+D - Cut next word Cut the word following the cursor.
+Ctrl+Y - Paste recent text Paste most recently cut text.
+Alt+Y - Paste earlier text Rotate back to previously cut text and paste it.
+Ctrl+C - Delete whole line Delete the entire line.
+    • Implementation of System Calls
+    • Implementation of I/O System Calls
+    • Simulation of UNIX Commands
+    • Implementation of FCFS Scheduling
+    • Implementation of SJF Scheduling
+    • Implementation of Priority Scheduling
+    • Implementation of Round Robin Scheduling
+    • Inter Process Communication Using Shared Memory
+    • Inter Process Communication Using Message Queues
+    • Producer – Consumer Problem Using Semaphores
+    • Memory Management Schemes – I
+    • Memory Management Schemes – II
+
+1. IP detection (IP or not?, Public/private, Class Identification)
+2. Humming Distance
+3. Checksum
+4. Cyclic Redundancy Check (CRC)
+5. Parity Bit (Even/Odd)
+
+< — Directs the contents of a fi le to the command. In most cases, this is the default
+action expected by the command and the use of the character is optional; using
+less bigfile is the same as less < bigfile.
+> — Directs the standard output of a command to a fi le. If the fi le exists, the
+content of that fi le is overwritten.
+2> — Directs standard error (error messages) to the file.
+&> — Directs both standard output and standard error to the file.
+>> — Directs the output of a command to a file, adding the output to the end of the existing file.
+
+| less - to see a text file line by line
+
+echo $PS1 - defines shell prompt
+     $MAIL - location of mail box
+     $SHELL - Shell location
+
+BASH - This contains the full pathname of the bash command. /bin/bash.
+
+BASH_VERSION - represents the current version of the bash command.
+
+EUID - This is the effective user ID number of the current user. based on the user’s entry in the /etc/passwd file.
+
+FCEDIT - If set, this variable indicates the text editor used by the fc command. If this variable isn’t set, the vi command is used.
+
+HISTFILE - This is the location of your history file. $HOME/.bash_history.
+
+HISTFILESIZE - The oldest commands are discarded. The default value is 1000.
+
+HISTCMD - This returns the number of the current command in the history list.
+
+HOME - This is your home directory.
+
+HOSTTYPE - the computer architecture on which the Linux system is running.
+
+MAIL - This is the location of your mailbox file. /var/spool/mail directory.
+
+OLDPWD - The directory that was the working directory before you changed to the current working directory.
+
+OSTYPE - This name identifies the current operating system. For Fedora Linux, the
+
+OSTYPE - value is either linux or linux-gnu.
+
+PATH - This is the colon-separated list of directories used to find commands that you type. Typically includes the following: /bin:/usr/bin:/usr/local/
+bin:/usr/bin/X11:/usr/X11R6/bin:~/bin. 
+
+PPID - This is the process ID of the command that started the current shell.
+
+PROMPT_COMMAND - This can be set to a command name that is run each time before your shell
+prompt is displayed. Setting PROMPT_COMMAND=date lists the current date/
+time before the prompt appears.
+
+PS1 - This sets the value of your shell prompt. with the variables PS2, PS3, and so on.
+PWD - This is the directory that is assigned as your current directory. 
+
+RANDOM - Accessing this variable causes a random number to be generated. The
+number is between 0 and 99999.
+SECONDS - This is the number of seconds since the time the shell was started.
+
+SHLVL - This is the number of shell levels associated with the current shell session.
+When you log in to the shell, the SHLVL is 1. Each time you start a new bash
+command (by, for example, using su to become a new user, or by simply
+typing bash), this number is incremented.
+
+TMOUT - This can be set to a number representing the number of seconds the shell
+can be idle without receiving input. After the number of seconds is
+reached, the shell exits.
+
+$(ls | wc -w) - For directory file count
+lpr & - run process in background
+; - chain together multiple commands
+Ctrl+F - Character forward Go forward one character.
+Ctrl+B - Character backward Go backward one character.
+Alt+F - Word forward Go forward one word.
+Alt+B - Word backward Go backward one word.
+Ctrl+A - Beginning of line Go to the beginning of the current line.
+Ctrl+E - End of line Go to the end of the line.
+Ctrl+L - Clear screen Clear screen and leave line at the top of the screen.
+
+Ctrl+D - Delete current Delete the current character.
+Backspace - Delete previous Delete the previous character.
+Ctrl+T - Transpose character Switch positions of current and previous characters.
+Alt+T - Transpose words Switch positions of current and previous words.
+Alt+U - Uppercase word Change the current word to uppercase.
+Alt+L - Lowercase word Change the current word to lowercase.
+Alt+C - Capitalize word Change the current word to an initial capital.
+Ctrl+V - Insert special character Add a special character. For example, to add a Tab
+character, press Ctrl+V+Tab.
+Ctrl+K - Cut end of line Cut text to the end of the line.
+Ctrl+U - Cut beginning of line Cut text to the beginning of the line.
+Ctrl+W - Cut previous word Cut the word located behind the cursor.
+Alt+D - Cut next word Cut the word following the cursor.
+Ctrl+Y - Paste recent text Paste most recently cut text.
+Alt+Y - Paste earlier text Rotate back to previously cut text and paste it.
+Ctrl+C - Delete whole line Delete the entire line.
+    • Implementation of System Calls
+    • Implementation of I/O System Calls
+    • Simulation of UNIX Commands
+    • Implementation of FCFS Scheduling
+    • Implementation of SJF Scheduling
+    • Implementation of Priority Scheduling
+    • Implementation of Round Robin Scheduling
+    • Inter Process Communication Using Shared Memory
+    • Inter Process Communication Using Message Queues
+    • Producer – Consumer Problem Using Semaphores
+    • Memory Management Schemes – I
+    • Memory Management Schemes – II
+
+1. IP detection (IP or not?, Public/private, Class Identification)
+2. Humming Distance
+3. Checksum
+4. Cyclic Redundancy Check (CRC)
+5. Parity Bit (Even/Odd)
+
+< — Directs the contents of a fi le to the command. In most cases, this is the default
+action expected by the command and the use of the character is optional; using
+less bigfile is the same as less < bigfile.
+> — Directs the standard output of a command to a fi le. If the fi le exists, the
+content of that fi le is overwritten.
+2> — Directs standard error (error messages) to the file.
+&> — Directs both standard output and standard error to the file.
+>> — Directs the output of a command to a file, adding the output to the end of the existing file.
+
+| less - to see a text file line by line
+
+echo $PS1 - defines shell prompt
+     $MAIL - location of mail box
+     $SHELL - Shell location
+
+BASH - This contains the full pathname of the bash command. /bin/bash.
+
+BASH_VERSION - represents the current version of the bash command.
+
+EUID - This is the effective user ID number of the current user. based on the user’s entry in the /etc/passwd file.
+
+FCEDIT - If set, this variable indicates the text editor used by the fc command. If this variable isn’t set, the vi command is used.
+
+HISTFILE - This is the location of your history file. $HOME/.bash_history.
+
+HISTFILESIZE - The oldest commands are discarded. The default value is 1000.
+
+HISTCMD - This returns the number of the current command in the history list.
+
+HOME - This is your home directory.
+
+HOSTTYPE - the computer architecture on which the Linux system is running.
+
+MAIL - This is the location of your mailbox file. /var/spool/mail directory.
+
+OLDPWD - The directory that was the working directory before you changed to the current working directory.
+
+OSTYPE - This name identifies the current operating system. For Fedora Linux, the
+
+OSTYPE - value is either linux or linux-gnu.
+
+PATH - This is the colon-separated list of directories used to find commands that you type. Typically includes the following: /bin:/usr/bin:/usr/local/
+bin:/usr/bin/X11:/usr/X11R6/bin:~/bin. 
+
+PPID - This is the process ID of the command that started the current shell.
+
+PROMPT_COMMAND - This can be set to a command name that is run each time before your shell
+prompt is displayed. Setting PROMPT_COMMAND=date lists the current date/
+time before the prompt appears.
+
+PS1 - This sets the value of your shell prompt. with the variables PS2, PS3, and so on.
+PWD - This is the directory that is assigned as your current directory. 
+
+RANDOM - Accessing this variable causes a random number to be generated. The
+number is between 0 and 99999.
+SECONDS - This is the number of seconds since the time the shell was started.
+
+SHLVL - This is the number of shell levels associated with the current shell session.
+When you log in to the shell, the SHLVL is 1. Each time you start a new bash
+command (by, for example, using su to become a new user, or by simply
+typing bash), this number is incremented.
+
+TMOUT - This can be set to a number representing the number of seconds the shell
+can be idle without receiving input. After the number of seconds is
+reached, the shell exits.
+
+$(ls | wc -w) - For directory file count
+lpr & - run process in background
+; - chain together multiple commands
+Ctrl+F - Character forward Go forward one character.
+Ctrl+B - Character backward Go backward one character.
+Alt+F - Word forward Go forward one word.
+Alt+B - Word backward Go backward one word.
+Ctrl+A - Beginning of line Go to the beginning of the current line.
+Ctrl+E - End of line Go to the end of the line.
+Ctrl+L - Clear screen Clear screen and leave line at the top of the screen.
+
+Ctrl+D - Delete current Delete the current character.
+Backspace - Delete previous Delete the previous character.
+Ctrl+T - Transpose character Switch positions of current and previous characters.
+Alt+T - Transpose words Switch positions of current and previous words.
+Alt+U - Uppercase word Change the current word to uppercase.
+Alt+L - Lowercase word Change the current word to lowercase.
+Alt+C - Capitalize word Change the current word to an initial capital.
+Ctrl+V - Insert special character Add a special character. For example, to add a Tab
+character, press Ctrl+V+Tab.
+Ctrl+K - Cut end of line Cut text to the end of the line.
+Ctrl+U - Cut beginning of line Cut text to the beginning of the line.
+Ctrl+W - Cut previous word Cut the word located behind the cursor.
+Alt+D - Cut next word Cut the word following the cursor.
+Ctrl+Y - Paste recent text Paste most recently cut text.
+Alt+Y - Paste earlier text Rotate back to previously cut text and paste it.
+Ctrl+C - Delete whole line Delete the entire line.
+    • Implementation of System Calls
+    • Implementation of I/O System Calls
+    • Simulation of UNIX Commands
+    • Implementation of FCFS Scheduling
+    • Implementation of SJF Scheduling
+    • Implementation of Priority Scheduling
+    • Implementation of Round Robin Scheduling
+    • Inter Process Communication Using Shared Memory
+    • Inter Process Communication Using Message Queues
+    • Producer – Consumer Problem Using Semaphores
+    • Memory Management Schemes – I
+    • Memory Management Schemes – II
+
+1. IP detection (IP or not?, Public/private, Class Identification)
+2. Humming Distance
+3. Checksum
+4. Cyclic Redundancy Check (CRC)
+5. Parity Bit (Even/Odd)
+
+< — Directs the contents of a fi le to the command. In most cases, this is the default
+action expected by the command and the use of the character is optional; using
+less bigfile is the same as less < bigfile.
+> — Directs the standard output of a command to a fi le. If the fi le exists, the
+content of that fi le is overwritten.
+2> — Directs standard error (error messages) to the file.
+&> — Directs both standard output and standard error to the file.
+>> — Directs the output of a command to a file, adding the output to the end of the existing file.
+
+| less - to see a text file line by line
+
+echo $PS1 - defines shell prompt
+     $MAIL - location of mail box
+     $SHELL - Shell location
+
+BASH - This contains the full pathname of the bash command. /bin/bash.
+
+BASH_VERSION - represents the current version of the bash command.
+
+EUID - This is the effective user ID number of the current user. based on the user’s entry in the /etc/passwd file.
+
+FCEDIT - If set, this variable indicates the text editor used by the fc command. If this variable isn’t set, the vi command is used.
+
+HISTFILE - This is the location of your history file. $HOME/.bash_history.
+
+HISTFILESIZE - The oldest commands are discarded. The default value is 1000.
+
+HISTCMD - This returns the number of the current command in the history list.
+
+HOME - This is your home directory.
+
+HOSTTYPE - the computer architecture on which the Linux system is running.
+
+MAIL - This is the location of your mailbox file. /var/spool/mail directory.
+
+OLDPWD - The directory that was the working directory before you changed to the current working directory.
+
+OSTYPE - This name identifies the current operating system. For Fedora Linux, the
+
+OSTYPE - value is either linux or linux-gnu.
+
+PATH - This is the colon-separated list of directories used to find commands that you type. Typically includes the following: /bin:/usr/bin:/usr/local/
+bin:/usr/bin/X11:/usr/X11R6/bin:~/bin. 
+
+PPID - This is the process ID of the command that started the current shell.
+
+PROMPT_COMMAND - This can be set to a command name that is run each time before your shell
+prompt is displayed. Setting PROMPT_COMMAND=date lists the current date/
+time before the prompt appears.
+
+PS1 - This sets the value of your shell prompt. with the variables PS2, PS3, and so on.
+PWD - This is the directory that is assigned as your current directory. 
+
+RANDOM - Accessing this variable causes a random number to be generated. The
+number is between 0 and 99999.
+SECONDS - This is the number of seconds since the time the shell was started.
+
+SHLVL - This is the number of shell levels associated with the current shell session.
+When you log in to the shell, the SHLVL is 1. Each time you start a new bash
+command (by, for example, using su to become a new user, or by simply
+typing bash), this number is incremented.
+
+TMOUT - This can be set to a number representing the number of seconds the shell
+can be idle without receiving input. After the number of seconds is
+reached, the shell exits.
+
+$(ls | wc -w) - For directory file count
+lpr & - run process in background
+; - chain together multiple commands
+Ctrl+F - Character forward Go forward one character.
+Ctrl+B - Character backward Go backward one character.
+Alt+F - Word forward Go forward one word.
+Alt+B - Word backward Go backward one word.
+Ctrl+A - Beginning of line Go to the beginning of the current line.
+Ctrl+E - End of line Go to the end of the line.
+Ctrl+L - Clear screen Clear screen and leave line at the top of the screen.
+
+Ctrl+D - Delete current Delete the current character.
+Backspace - Delete previous Delete the previous character.
+Ctrl+T - Transpose character Switch positions of current and previous characters.
+Alt+T - Transpose words Switch positions of current and previous words.
+Alt+U - Uppercase word Change the current word to uppercase.
+Alt+L - Lowercase word Change the current word to lowercase.
+Alt+C - Capitalize word Change the current word to an initial capital.
+Ctrl+V - Insert special character Add a special character. For example, to add a Tab
+character, press Ctrl+V+Tab.
+Ctrl+K - Cut end of line Cut text to the end of the line.
+Ctrl+U - Cut beginning of line Cut text to the beginning of the line.
+Ctrl+W - Cut previous word Cut the word located behind the cursor.
+Alt+D - Cut next word Cut the word following the cursor.
+Ctrl+Y - Paste recent text Paste most recently cut text.
+Alt+Y - Paste earlier text Rotate back to previously cut text and paste it.
+Ctrl+C - Delete whole line Delete the entire line.

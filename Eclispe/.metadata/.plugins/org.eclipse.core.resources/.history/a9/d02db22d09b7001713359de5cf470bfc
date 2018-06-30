@@ -1,0 +1,463 @@
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.AbstractButton;
+import javax.swing.DefaultListModel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JScrollPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.ScrollPane;
+import java.util.ArrayList;
+import java.util.Collections;
+import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Date;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import com.toedter.calendar.JDateChooser;
+import net.proteanit.sql.DbUtils;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import java.awt.Scrollbar;
+import java.awt.Point;
+
+
+public class Voters extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private UserDataManipulations data = new UserDataManipulations();
+	private ArrayList<String> voterList = new ArrayList<String>();
+	private ArrayList<String> previousList = new ArrayList<String>();
+	protected String marital = null;
+	protected String gender = null;
+	private JPanel contentPane;
+	private JTextField textFieldName;
+	private JTextField textFieldID;
+	private JTable table;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Voters frame = new Voters();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Voters() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("Voter List");
+		setBounds(100, 100, 954, 585);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		String date = null;
+		
+		//previousList = opVoter.getVoters();
+		
+		DefaultListModel<String> listModel = new DefaultListModel<String>();
+		
+		JLabel lblVotersList = new JLabel("Voters List");
+		lblVotersList.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		
+		JLabel lblAddVotersId = new JLabel("Type Voters Info Down Below");
+		lblAddVotersId.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		if( !previousList.isEmpty() )
+		{
+			for( String tmpId : previousList)
+			{
+				listModel.addElement(tmpId);
+			}
+		}
+		
+		JButton btnAddVoter = new JButton("Add Voter");
+		
+		btnAddVoter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//ResultSet rs = dataList();
+			//	table.setModel( DbUtils.resultSetToTableModel(rs) );
+				
+				voterList.addAll(previousList);
+				
+				for( String tmpId : voterList)
+				{
+					listModel.addElement(tmpId);
+				}
+						
+				listModel.removeAllElements(); 
+				
+				
+				String ID = textFieldID.getText();
+				String name = textFieldName.getText();
+				String dob = "";
+				
+				if( !ID.isEmpty() && !voterList.contains( ID ) && ID.length() >= 8 && ID.matches("[0-9]+") )
+				{
+					voterList.add( input );
+				
+					Collections.sort( voterList );
+					textFieldID.setText( "" );
+				}
+				else if( input.length() <= 8 || !input.matches( "[0-9]+")  )
+				{
+					JOptionPane.showMessageDialog(Voters.this, "Given ID Number Must Be Greater Than 7 Numbers.\n"
+							+ "ID Numbers Should Only Consists Of Integers", null, JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+				else if( voterList.contains( input ) )
+				{
+					JOptionPane.showMessageDialog(Voters.this, "ID already is in the list", null, JOptionPane.INFORMATION_MESSAGE);
+					textFieldID.setText( "" );
+				}
+				else if( input.isEmpty() )
+				{
+					JOptionPane.showMessageDialog(Voters.this, "Please don't leave the textfield empty.", null, JOptionPane.WARNING_MESSAGE);
+				}
+				
+				for( String tmpId : voterList)
+				{
+					listModel.addElement(tmpId);
+				}
+				
+				previousList.removeAll(voterList);
+				
+			}
+		});
+		btnAddVoter.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		
+		JButton buttonDelVoter = new JButton("Delete Voter");
+		buttonDelVoter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if( list.isSelectionEmpty() )
+				{
+					JOptionPane.showMessageDialog(Voters.this, "Please Select an ID first to delete", null, JOptionPane.WARNING_MESSAGE);
+				}
+				
+				voterList.remove( list.getSelectedValue() );
+				previousList.remove( list.getSelectedValue() );
+				
+				voterList.addAll( previousList );
+				previousList.clear();
+				listModel.removeAllElements();
+				
+				for( String tmpId : voterList)
+				{
+					listModel.addElement(tmpId);
+				}
+			}
+		});
+		
+		buttonDelVoter.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		
+		JButton button = new JButton("<- Go Back");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+				
+				for( String tmpId : voterList)
+				{
+					//dataList.addVoters( tmpId );
+				}
+				
+				for( String tmpId : previousList)
+				{
+					//dataList.addVoters( tmpId );
+				}
+				
+				//dataList.writeVoterId();
+				
+				dispose();
+					
+			}
+		});
+		button.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		
+		JButton buttonFinish = new JButton("Finish");
+		buttonFinish.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				for( String tmpId : voterList)
+				{
+					//dataList.addVoters( tmpId );
+				}
+				for( String tmpId : previousList)
+				{
+					//dataList.addVoters( tmpId );
+				}
+				
+				//dataList.writeVoterId();
+				
+				dispose();
+
+			}
+		});
+		
+		buttonFinish.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		
+		JButton btnDeleteAll = new JButton("Delete All");
+		btnDeleteAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				voterList.clear();
+				listModel.removeAllElements();
+				
+				for( String tmpId : voterList)
+				{
+					listModel.addElement(tmpId);
+				}
+			}
+		});
+		btnDeleteAll.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		
+		JLabel lblId = new JLabel("ID");
+		lblId.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		textFieldName = new JTextField();
+		textFieldName.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textFieldName.setColumns(10);
+		
+		JLabel lblName = new JLabel("Name"); 
+		lblName.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setDateFormatString("dd-MMM-yyyy");
+		dateChooser.getDateEditor().addPropertyChangeListener(
+			    new PropertyChangeListener() {
+			        @Override
+			        public void propertyChange(PropertyChangeEvent e) {
+			            if ("date".equals(e.getPropertyName() ) ) {
+			            	String s =  ( format1.format( (Date) e.getNewValue() ) );
+			            }
+			            date = s;
+			        }
+			    });
+			getContentPane().add(dateChooser);
+		
+		JLabel lblDob = new JLabel("Date Of Birth");
+		lblDob.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JRadioButton rdbtnFemale = new JRadioButton("Female");
+		JRadioButton rdbtnOther = new JRadioButton("Other");
+		JRadioButton rdbtnMale = new JRadioButton("Male");
+		
+		rdbtnMale.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if( rdbtnMale.isSelected() )
+				{
+					rdbtnFemale.setSelected(false);
+					rdbtnOther.setSelected( false );
+					gender = "m";
+				}
+			}
+		});
+		rdbtnMale.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		rdbtnFemale.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if( rdbtnFemale.isSelected() )
+				{
+					rdbtnMale.setSelected(false);
+					rdbtnOther.setSelected( false );
+					gender = "f";
+				}
+			}
+		});
+		rdbtnFemale.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		
+		rdbtnOther.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if( rdbtnOther.isSelected() )
+				{
+					rdbtnMale.setSelected(false);
+					rdbtnFemale.setSelected( false );
+					gender = "o";
+				}
+			}
+		});
+		rdbtnOther.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		JLabel lblGender = new JLabel("Gender");
+		lblGender.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JPanel panel = new JPanel();
+		
+		textFieldID = new JTextField();
+		textFieldID.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textFieldID.setColumns(10);
+		
+		JLabel lblMaritalStatus = new JLabel("Marital Status");
+		lblMaritalStatus.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JRadioButton rdbtnMarried = new JRadioButton("Married");
+		JRadioButton rdbtnUnmarried = new JRadioButton("Unmarried");
+		
+		rdbtnMarried.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if( rdbtnMarried.isSelected() )
+				{
+					rdbtnUnmarried.setSelected( false );
+					marital = "y";
+				}
+			}
+		});
+		rdbtnMarried.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		rdbtnUnmarried.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if( rdbtnUnmarried.isSelected() )
+				{
+					rdbtnMarried.setSelected( false );
+					marital = "n";
+				}
+			}
+		});
+		rdbtnUnmarried.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 451, GroupLayout.PREFERRED_SIZE)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(80)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblId, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblName, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblDob, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblGender, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblMaritalStatus))
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(dateChooser, GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+										.addComponent(lblAddVotersId)
+										.addComponent(textFieldID, GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+										.addComponent(textFieldName, 254, 254, 254)
+										.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+											.addGroup(gl_contentPane.createSequentialGroup()
+												.addComponent(rdbtnMarried, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(ComponentPlacement.UNRELATED)
+												.addComponent(rdbtnUnmarried, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE))
+											.addGroup(gl_contentPane.createSequentialGroup()
+												.addComponent(rdbtnMale)
+												.addGap(18)
+												.addComponent(rdbtnFemale)
+												.addGap(18)
+												.addComponent(rdbtnOther, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGap(122)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+										.addComponent(buttonDelVoter, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+										.addComponent(btnAddVoter, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+										.addComponent(btnDeleteAll, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addComponent(button, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+											.addComponent(buttonFinish, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))))))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(182)
+							.addComponent(lblVotersList)))
+					.addContainerGap())
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(18)
+					.addComponent(lblVotersList)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblAddVotersId)
+							.addGap(18)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(textFieldID, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblId, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblName, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textFieldName, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblDob, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+								.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
+							.addGap(18)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblGender, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+								.addComponent(rdbtnMale)
+								.addComponent(rdbtnFemale)
+								.addComponent(rdbtnOther))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblMaritalStatus, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+								.addComponent(rdbtnMarried, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+								.addComponent(rdbtnUnmarried, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(btnAddVoter)
+							.addGap(18)
+							.addComponent(buttonDelVoter)
+							.addGap(18)
+							.addComponent(btnDeleteAll)
+							.addGap(18)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(buttonFinish)
+								.addComponent(button, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 464, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
+		
+		table = new JTable();
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap(76, Short.MAX_VALUE)
+					.addComponent(table, GroupLayout.PREFERRED_SIZE, 320, GroupLayout.PREFERRED_SIZE)
+					.addGap(55))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(98)
+					.addComponent(table, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(160, Short.MAX_VALUE))
+		);
+		panel.setLayout(gl_panel);
+
+
+		contentPane.setLayout(gl_contentPane);
+		
+	}
+}

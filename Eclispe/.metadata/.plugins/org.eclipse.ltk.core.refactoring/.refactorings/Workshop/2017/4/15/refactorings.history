@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;UserFileOperation.fileName&apos; in &apos;UserFileOperation&apos;&#x0D;&#x0A;- Original project: &apos;Workshop&apos;&#x0D;&#x0A;- Original element: &apos;UserFileOperation.fileName&apos;&#x0D;&#x0A;- Getter method name: &apos;getFileName&apos;&#x0D;&#x0A;- Setter method name: &apos;setFileName&apos;&#x0D;&#x0A;- Field visibility: &apos;public&apos;&#x0D;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;fileName&apos;" flags="589830" getter="getFileName" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;{UserFileOperation.java[UserFileOperation^fileName" insertion="-1" setter="setFileName" stamp="1491883963400" version="1.0" visibility="1"/>
+</session>

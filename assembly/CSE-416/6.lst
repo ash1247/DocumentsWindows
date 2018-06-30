@@ -1,0 +1,56 @@
+     1                                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     2                                  ;;
+     3                                  ;;
+     4                                  ;   Run: nasm -f elf64 -g -F dwarf 1.asm -l 1.lst
+     5                                  ;        ld -o 1 1.o
+     6                                  ;
+     7                                  ;       A program to read a char from keyboard and display it
+     8                                  ;
+     9                                  ;
+    10                                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    11                                  section .bss                       ; uninitialized data
+    12                                  
+    13 00000000 <res 00000001>                  res resb 1
+    14                                  section .data                      ;Section containing data
+    15 00000000 0A                              newLine: db "",10              ; newLine 
+    16                                          newLL equ $-newLine        ; newLine length
+    17                                          
+    18                                  section .text                      ; section containing code
+    19                                  
+    20                                  global _start                      ;linker initialized
+    21                                  
+    22                                  _start:                            ;entry point for linker
+    23 00000000 90                              nop                        ; For debugger
+    24                                          
+    25 00000001 B831000000                      mov eax, '1'
+    26 00000006 83E830                          sub eax, '0'
+    27 00000009 BB33000000                      mov ebx, '3'
+    28 0000000E 83E830                          sub eax, '0'
+    29 00000011 B934390000                      mov ecx, '49'
+    30 00000016 83E930                          sub ecx, '0'
+    31                                          
+    32                                          
+    33 00000019 01D8                    Loop:   add eax, ebx
+    34 0000001B 39C8                            cmp eax, ecx
+    35 0000001D 7EFA                            jng Loop  
+    36                                          
+    37 0000001F 83C030                          add eax, '0'
+    38 00000022 890425[00000000]                mov [res], eax
+    39                                          
+    40 00000029 B804000000                      mov eax, 4                 ; initialize wr sys_call 
+    41 0000002E BB01000000                      mov ebx, 1                 
+    42 00000033 B9[00000000]                    mov ecx, res              ; Pass offset of the msg
+    43 00000038 BA03000000                      mov edx, 3          
+    44 0000003D CD80                            int 80h                    ; Make kernel call,
+    45                                          
+    46                                         ; add new line
+    47 0000003F B804000000                      mov eax, 4                 ; initialize wr sys_call
+    48 00000044 BB01000000                      mov ebx, 1                 ;
+    49 00000049 B9[00000000]                    mov ecx, newLine           ; add newLine
+    50 0000004E BA01000000                      mov edx, newLL             ; length of newLine
+    51 00000053 CD80                            int 80h
+    52                                  
+    53                                          ; Exit
+    54 00000055 B801000000                      mov eax, 1                 ; Exit sys_call
+    55 0000005A BB00000000                      mov ebx, 0                 ; Return a code for zero
+    56 0000005F CD80                            int 80h                    ; Make kernel call 

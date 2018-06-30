@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Deitel4/src/GUI4_1b.java&apos; to &apos;GUI4_2.java&apos;" description="Rename resource &apos;GUI4_1b.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/GUI4_1b.java" name="GUI4_2.java" stamp="1488306533875" updateReferences="true"/>
+</session>

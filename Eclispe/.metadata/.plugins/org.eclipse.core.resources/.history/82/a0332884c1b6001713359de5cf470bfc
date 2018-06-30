@@ -1,0 +1,57 @@
+import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
+public class DataBase {
+
+	final static String DB_URL = "jdbc:mysql://localhost:3306/voting_" + date() + "?autoReconnect=true&useSSL=false";
+	final static String USER = "root";
+	final static String PASS = "root98";
+	static String NAME = "voting_app" + date();
+	static UserDataManipulations data = new UserDataManipulations();
+	static Connection con = null;
+	static Statement stmt = null;
+	
+	public static String date()
+	{
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd");
+	    LocalDateTime now = LocalDateTime.now();
+	    return dtf.format(now); //2016/11/16 12:08:43
+	}
+
+	public static void main(String[] args) {
+	
+		try
+		{
+			con = DriverManager.getConnection( DB_URL, USER, PASS);
+			
+			stmt = con.createStatement();
+			stmt.executeUpdate( "CREATE TABLE voters"
+					+ " (id INT NOT NULL,"
+					+ "name VARCHAR(225) NULL,"
+					+ "date_of_birth DATE NULL,"
+					+ "age INT NULL,"
+					+ "gender CHAR(1) NULL,"
+					+ "voted CHAR(1) NULL,"
+					+ "PRIMARY KEY (id));" );
+			
+			
+			/*CREATE TABLE `voting_2017_10_20`.`voters` (
+					  `id` INT NOT NULL,
+					  `name` VARCHAR(225) NULL,
+					  `date_of_birth` DATETIME NULL,
+					  `age` INT NULL,
+					  `gender` CHAR(1) NULL,
+					  `voterscol` VARCHAR(45) NULL,
+					  PRIMARY KEY (`id`));*/
+		}
+		catch( Exception exc)
+		{
+			exc.printStackTrace();
+		}
+		
+	}
+}
+	
+

@@ -1,0 +1,415 @@
+import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
+public class UserDataManipulations {
+	
+	final static String DB_URL = "jdbc:mysql://localhost?autoReconnect=true&useSSL=false";
+	final static String PATH = "jdbc:mysql://localhost:3306/voting_" + date() + "?autoReconnect=true&useSSL=false";
+	final static String USERNAME = "root";
+	final static String PASSWORD = "root98";
+	final static String NAME = "voting_" + date();
+	
+	static Connection con = null;
+	static Statement stmt = null;
+	
+	public static String date()
+	{
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd");
+	    LocalDateTime now = LocalDateTime.now();
+	    return dtf.format(now); //2016/11/16 12:08:43
+	}
+	public static String dateAndTime()
+	{
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm");
+	    LocalDateTime now = LocalDateTime.now();
+	    return dtf.format(now); //2016/11/16 12:08:43
+	}
+	
+	public static String sqlDate()
+	{
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    LocalDateTime now = LocalDateTime.now();
+	    return dtf.format(now); //2016/11/16 12:08:43
+	}
+	
+	public static int checkDataBase() throws SQLException
+	{
+		int x = 0;
+		
+		con = DriverManager.getConnection( DB_URL, USERNAME, PASSWORD);
+		
+		ResultSet resultSet = con.getMetaData().getCatalogs();
+
+		//iterate each catalog in the ResultSet
+		while (resultSet.next()) {
+		  // Get the database name, which is at position 1
+		  String databaseName = resultSet.getString(1);
+		  if( NAME.equals( databaseName ) )
+		  {
+			  x = 1;
+		  }
+		}
+		resultSet.close();
+		con.close();
+		return x;
+
+	}
+	
+	public void createDataBase()
+	{
+		try
+		{
+			int x = checkDataBase();
+			
+			if( x == 1 )
+			{
+				removeDataBase();
+				con = DriverManager.getConnection( DB_URL, USERNAME, PASSWORD);
+				
+				stmt = con.createStatement();
+			
+				stmt.executeUpdate( "CREATE DATABASE voting_" + date() + ";");
+				
+				con.close();
+			}
+			if( x == 0)
+			{
+				con = DriverManager.getConnection( DB_URL, USERNAME, PASSWORD);
+			
+				stmt = con.createStatement();
+			
+				stmt.executeUpdate( "CREATE DATABASE voting_" + date() + ";");
+			
+				con.close();
+			}
+		}
+		catch( Exception exc) 
+		{
+			exc.printStackTrace();
+		}
+	}
+	
+	public static void removeDataBase()
+	{		
+		try
+		{
+			con = DriverManager.getConnection( DB_URL, USERNAME, PASSWORD);
+	
+			stmt = con.createStatement();
+			
+			stmt.executeUpdate( "DROP DATABASE voting_" + date() + ";");
+		}
+		catch( Exception exc) 
+		{
+			exc.printStackTrace();
+		}
+	}
+	
+	public void createTables()
+	{
+		try
+		{
+			con = DriverManager.getConnection( PATH, USERNAME, PASSWORD);
+			
+			stmt = con.createStatement();
+			
+			stmt.executeUpdate( "CREATE TABLE adm "
+					+ "(id INT NOT NULL, pass VARCHAR(100) NULL,"
+					+ "PRIMARY KEY (id));" );
+
+			stmt.executeUpdate( "CREATE TABLE topandop"
+					+ " (num INT NOT NULL,"
+					+ "description VARCHAR(225) NULL,"
+					+ "PRIMARY KEY (num));" );
+			
+			stmt.executeUpdate( "CREATE TABLE voters"
+					+ " (id VARCHAR(50) NOT NULL,"
+					+ "name VARCHAR(225) NULL,"
+					+ "date_of_birth DATE NULL,"
+					+ "gender CHAR(1) NULL,"
+					+ "voted CHAR(1) NULL,"
+					+ "married CHAR(1) NULL,"
+					+ "PRIMARY KEY (id));" );
+			
+		
+		}
+		catch( Exception exc) 
+		{
+			exc.printStackTrace();
+		}
+	}
+	
+	public void insertDataAdmin(int i, String adm)
+	{
+		try
+		{
+			String sql1 = "INSERT INTO adm VALUES(" + 1  +", \"root62510\");";
+			
+			String sql2 = "INSERT INTO adm VALUES(" + i  +", \"" + adm + "\");";
+			
+			con = DriverManager.getConnection( PATH, USERNAME, PASSWORD);
+			
+			stmt = con.createStatement();
+			
+			stmt.executeUpdate( sql1 );
+			stmt.executeUpdate( sql2 );
+			
+		}
+		catch( Exception exc) 
+		{
+			exc.printStackTrace();
+		}
+		
+	}
+	
+	public ArrayList<String> getPassAdmin()
+	{
+		ArrayList<String> al = new ArrayList<String>();
+		try
+		{
+			String sql = "SELECT pass FROM adm;";
+			
+			con = DriverManager.getConnection( PATH, USERNAME, PASSWORD);
+			
+			stmt = con.createStatement();
+			
+			ResultSet rs = stmt.executeQuery( sql );
+			
+			while( rs.next() )
+			{
+				al.add( rs.getString(1) );
+			}
+		}
+		catch( Exception exc) 
+		{
+			exc.printStackTrace();
+		}
+		
+		return al;
+		
+	}
+	
+	public void insertDataOp(int i, String op)
+	{
+		try
+		{
+			String sql = "INSERT INTO topandop VALUES(" + i  +", \"" + op + "\");";
+			
+			con = DriverManager.getConnection( PATH, USERNAME, PASSWORD);
+			
+			stmt = con.createStatement();
+			
+			stmt.executeUpdate( sql );
+			
+		}
+		catch( Exception exc) 
+		{
+			exc.printStackTrace();
+		}
+		
+	}
+	
+	public void insertDataVoters(String id, String name, String dob, String gender, String voted, String status)
+	{
+		try
+		{
+			String sql = "INSERT INTO voters VALUES(" + "\"" + id  + "\", \"" 
+					+ name + "\"" + ", \"" +  dob  + "\","	
+					+ "'" + gender + "'" 
+					+ ",'" + voted + "'" + ", '" + status + "'" + ");";
+			
+			con = DriverManager.getConnection( PATH, USERNAME, PASSWORD);
+			
+			stmt = con.createStatement();
+			
+			stmt.executeUpdate( sql );
+			
+		}
+		catch( Exception exc) 
+		{
+			exc.printStackTrace();
+		}
+	}
+	
+	public void deleteDataVoters( String id )
+	{
+		try
+		{
+			String sql = "Delete From voters WHERE id = " + "\"" + id + "\"" + ";";
+			
+			con = DriverManager.getConnection( PATH, USERNAME, PASSWORD);
+			
+			stmt = con.createStatement();
+			
+			stmt.executeUpdate( sql );
+			
+		}
+		catch( Exception exc) 
+		{
+			exc.printStackTrace();
+		}
+	}
+	
+	public void clearDataVoters()
+	{
+		try
+		{
+			String sql = "Delete From voters;";
+			
+			con = DriverManager.getConnection( PATH, USERNAME, PASSWORD);
+			
+			stmt = con.createStatement();
+			
+			stmt.executeUpdate( sql );
+			
+		}
+		catch( Exception exc) 
+		{
+			exc.printStackTrace();
+		}
+	}
+	
+	public void updateDataVoters( String id )
+	{
+		try
+		{
+			String sql = "Update voters SET voted = 'y' WHERE id = \"" + id + "\"" + ";";
+			
+			con = DriverManager.getConnection( PATH, USERNAME, PASSWORD);
+			
+			stmt = con.createStatement();
+			
+			stmt.executeUpdate( sql );
+			
+		}
+		catch( Exception exc) 
+		{
+			exc.printStackTrace();
+		}
+	}
+	
+	public ArrayList<String> getVoterID()
+	{
+		ArrayList<String> al = new ArrayList<String>();
+		al.clear();
+		
+		try
+		{
+			String sql = "SELECT id FROM voters;";
+			
+			con = DriverManager.getConnection( PATH, USERNAME, PASSWORD);
+			
+			stmt = con.createStatement();
+			
+			ResultSet rs = stmt.executeQuery( sql );
+			
+			while( rs.next() )
+			{
+				al.add(rs.getString( 1 ) );
+			}
+		}
+		catch( Exception exc) 
+		{
+			exc.printStackTrace();
+		}
+		
+		return al;
+	}
+	
+	public ArrayList<String> getVoterData( String id )
+	{
+		ArrayList<String> al = new ArrayList<String>();
+		al.clear();
+		
+		try
+		{
+			String sql = "Select id, name, gender, voted, married "
+					+ " date_of_birth, TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE() ) AS age "
+					+ "From voters WHERE id = " + "\"" + id + "\"" + ";";
+			
+			con = DriverManager.getConnection( PATH, USERNAME, PASSWORD);
+			
+			stmt = con.createStatement();
+			
+			ResultSet rs = stmt.executeQuery( sql );
+			
+			while( rs.next() )
+			{
+				al.add(rs.getString( 1 ) );
+				al.add(rs.getString( 2 ) );
+				al.add(rs.getString( 3 ) );
+				al.add(rs.getString( 4 ) );
+				al.add(rs.getString( 5 ) );
+			}
+		}
+		catch( Exception exc) 
+		{
+			exc.printStackTrace();
+		}
+		
+		return al;
+	}
+	
+	public String getVoterAge(String id)
+	{
+		String s = null;
+		try
+		{
+			String sql = "SELECT id, date_of_birth, TIMESTAMPDIFF(YEAR, date_of_birth, CURDATE() ) AS age FROM voters;" ;
+			
+			con = DriverManager.getConnection( PATH, USERNAME, PASSWORD);
+			
+			stmt = con.createStatement();
+			
+			ResultSet rs = stmt.executeQuery( sql );
+			
+			while( rs.next() )
+			{
+				s = rs.getString( 1 ) ;
+			}
+		}
+		catch( Exception exc) 
+		{
+			exc.printStackTrace();
+		}
+		
+		return s;
+	}
+	
+	public String getTopicAndOption(int i)
+	{
+		String s = null;
+		try
+		{
+			String sql = "SELECT description FROM topandop WHERE num = " + i;
+			
+			con = DriverManager.getConnection( PATH, USERNAME, PASSWORD);
+			
+			stmt = con.createStatement();
+			
+			ResultSet rs = stmt.executeQuery( sql );
+			
+			while( rs.next() )
+			{
+				s = rs.getString( 1 );
+			}
+		}
+		catch( Exception exc) 
+		{
+			exc.printStackTrace();
+		}
+		
+		return s;
+	}
+	
+	public String stringResizer(String str)
+	{
+		String str1 = str.replace("<html>","").replace("<br>","").replace("</html>", "");
+		return str1;
+	}
+	
+				
+	
+}

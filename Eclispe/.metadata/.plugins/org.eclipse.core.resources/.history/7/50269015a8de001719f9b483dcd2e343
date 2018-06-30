@@ -1,0 +1,34 @@
+//Link List
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Scanner;
+import java.io.*;
+
+
+public class ReadFile{
+	public static void main(String args[]) throws IOException{
+		Scanner scan = new Scanner(System.in);
+		LinkedList list = new LinkedList();
+		FileReader fr = new FileReader("C:\\Users\\ASUS\\Documents\\Eclispe\\Exam\\src\\Info.txt");
+		BufferedReader br = new BufferedReader(fr);
+		String st;
+		String s = " ";
+		int i=0;
+		
+		while( (st = br.readLine()) != null){
+			 s += st;
+			 s += " ";
+		}
+		String[] a = s.split("\\s");;
+		for(int j = 0; j < a.length; j += 3){
+			list.add(a[j], a[j+1], Integer.parseInt(a[j+2]) );
+		}
+		list.display();
+		System.out.println("\nEnter ID to Search: ");
+		list.search(scan.nextInt());
+		System.out.println("\nEnter ID to get Neighbour Students: ");
+		list.neighbour(scan.nextInt());
+
+	}
+}

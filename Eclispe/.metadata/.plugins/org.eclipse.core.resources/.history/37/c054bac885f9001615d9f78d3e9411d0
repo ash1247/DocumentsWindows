@@ -1,0 +1,117 @@
+//import java.util.Scanner;
+
+public class Ex3_16 {
+
+	private String firstName;
+	private String lastName;
+	private int day;
+	private int month;
+	private int year;
+	double ageInYears = 0;
+	double maximumHeartRates = 0;
+	double targetHeartRatesLow = 0;
+	double targetHeartRatesHigh = 0;
+	
+	public Ex3_16(String fName, String lName, int da, int mont, int yea)
+	{
+		firstName = fName;
+		lastName = lName;
+		day = da;
+		month = mont;
+		year = yea;
+	}
+	
+	public void setFirstName(String fName)
+	{
+		firstName = fName;
+	}
+	
+	public String getFirstName()
+	{
+		return firstName;
+	}
+	
+	public void setLastName(String lName)
+	{
+		lastName = lName;
+	}
+	
+	public String getLastName()
+	{
+		return lastName;
+	}
+	
+	public void setDay(int da)
+	{
+		day = da;
+	}
+	
+	public int getDay()
+	{
+		return day;
+	}
+	
+	public void setMonth(int mont)
+	{
+		month = mont;
+	}
+	
+	public int getMonth()
+	{
+		return month;
+	}
+	
+	public void setYear(int yea)
+	{
+		year = yea;
+	}
+	
+	public int getYear()
+	{
+		return year;
+	}
+	
+	public void ageCalculator()
+	{
+		ageInYears = (year + (month / 12) + (day / 365));
+	}
+	
+	public void maximumHeartRates()
+	{
+		maximumHeartRates = (220 - ageInYears);
+	}
+	
+	public void targetHeartRateLow()
+	{
+		targetHeartRatesLow = ( maximumHeartRates * ( 50/100) );
+	}
+	
+	public void targetHeartRateHigh()
+	{
+		targetHeartRatesHigh = ( maximumHeartRates * ( 85/100) );
+	}
+	
+	public void displayMessage()
+	{
+		System.out.printf("First Name: %s\n", firstName);
+		
+		System.out.printf("Last Name: %s\n", lastName );
+		System.out.printf("Date Of Birth: %d/%d/%d\n", day, month, year);
+		System.out.printf("Maximum Heart Rates: %.2f\n", maximumHeartRates );
+		System.out.printf("Target Heart Rate: %.2f - %.2f\n", targetHeartRatesLow, targetHeartRatesHigh );
+	
+	}
+	
+	public static void main(String[] args)
+	{
+	
+	//	Scanner input = new Scanner(System.in);
+		
+		Ex3_16 cal = new Ex3_16( "Hosen", "Mia", 21, 02, 1996);
+		
+		cal.displayMessage();
+		
+		
+	}
+	
+}

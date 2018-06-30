@@ -1,0 +1,8 @@
+
+public class VoteCount {
+	
+	Voting voting = new Voting();
+	
+	protected int count = Voting.count;
+
+}

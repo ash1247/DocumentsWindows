@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Practice/src/Employee_Info.java&apos; to &apos;Access_Modifier.java&apos;" description="Rename resource &apos;Employee_Info.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/Employee_Info.java" name="Access_Modifier.java" stamp="1486891131787" updateReferences="true"/>
+</session>

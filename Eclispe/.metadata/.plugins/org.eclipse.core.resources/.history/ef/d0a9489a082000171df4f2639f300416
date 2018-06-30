@@ -1,0 +1,233 @@
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import java.awt.Font;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
+
+public class Voting extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	protected int option;
+	
+	protected static int count = 0, count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0;
+	
+	protected WelcomeWindow welcomeWindow = new WelcomeWindow();
+	private UserFileOperation operation = new UserFileOperation("Topic");
+	private UserFileOperation operation1 = new UserFileOperation("Option1");
+	private UserFileOperation operation2 = new UserFileOperation("Option2");
+	private UserFileOperation operation3 = new UserFileOperation("Option3");
+	private UserFileOperation operation4 = new UserFileOperation("Option4");
+	private UserFileOperation operation5 = new UserFileOperation("Option5");
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Voting frame = new Voting();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Voting() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Change it to do nothing
+		setTitle("Voting.......");
+		setBounds(100, 100, 716, 690);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		option = WelcomeWindow.radioButton;
+		
+		String Option1 = operation1.getUserData();
+		String Option2 = operation2.getUserData();
+		String Option3 = operation3.getUserData();
+		String Option4 = operation4.getUserData();
+		String Option5 = operation5.getUserData();
+		
+		
+		JButton btnOption1 = new JButton(Option1);
+		btnOption1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				count1++;
+			}
+		});
+		btnOption1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JButton btnOption2 = new JButton(Option2);
+		btnOption2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				count2++;
+			}
+		});
+		btnOption2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JButton btnOption3 = new JButton(Option3);
+		btnOption3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				count3++;
+			}
+		});
+		btnOption3.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JButton btnOption4 = new JButton(Option4);
+		btnOption4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				count4++;		
+			}
+		});
+		btnOption4.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JButton btnOption5 = new JButton(Option5);
+		btnOption5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				count5++;
+			}
+		});
+		btnOption5.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		if(option == 2)
+		{
+			btnOption3.setVisible(false);
+			btnOption4.setVisible(false);
+			btnOption5.setVisible(false);
+		
+		}
+		
+		if(option == 3)
+		{
+			btnOption4.setVisible(false);
+			btnOption5.setVisible(false);
+		}
+		
+		if(option == 4)
+		{
+			btnOption5.setVisible(false);
+		}
+		
+		count = count1 + count2 + count3 + count4 + count5;
+		System.out.println(count);
+		
+		JButton btnStop = new JButton("Stop Voting!!");
+		btnStop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				UserFileOperation operation = new UserFileOperation("Admin");
+				
+				String password = operation.getUserPassword();
+
+			
+				String message = JOptionPane.showInputDialog("Enter your Password.");
+				
+				if ((message != null) && (message.length() > 0)) {
+				
+					if(message.equals(password) )
+					{
+						JOptionPane.showMessageDialog(null, "Voting has been stopped");
+						ResultWindow result = new ResultWindow();
+						result.setVisible(true);
+						result.setResizable(false);
+						setVisible(false);
+						
+					}
+					
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Password did not match");
+					}
+				}	
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Please enter the Password to stop voting.");
+				}
+			}
+		});
+		btnStop.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		String topic = operation.getUserData();
+		
+		JTextArea textTopic = new JTextArea();
+		textTopic.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		String text = operation.getUserData();
+		textTopic.setText("");
+		textTopic.setLineWrap(true);
+		textTopic.setEditable(false);
+		textTopic.setText(text);
+		
+		JLabel lblTopicOfVote = new JLabel("Topic Of Vote");
+		lblTopicOfVote.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnStop)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnOption2, GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnOption3, GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnOption5, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+								.addComponent(btnOption4, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(textTopic, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+								.addComponent(btnOption1, GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(256)
+							.addComponent(lblTopicOfVote)))
+					.addContainerGap())
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(btnStop)
+					.addGap(16)
+					.addComponent(lblTopicOfVote)
+					.addGap(18)
+					.addComponent(textTopic, GroupLayout.PREFERRED_SIZE, 252, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+					.addComponent(btnOption1, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnOption2, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnOption3, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+					.addGap(12)
+					.addComponent(btnOption4, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnOption5, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		contentPane.setLayout(gl_contentPane);
+	}
+
+}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.wb.internal.core.model.util.ExposeComponentSupport$ExposeDialog">
+		<item value="610" key="x"/>
+		<item value="700" key="width"/>
+		<item value="327" key="y"/>
+		<item value="375" key="height"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.model.util.factory.FactoryCreateAction$FactoryCreateDialog">
+		<item value="333" key="x"/>
+		<item value="1253" key="width"/>
+		<item value="21" key="y"/>
+		<item value="987" key="height"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.editor.palette.dialogs.ComponentAddDialog">
+		<item value="558" key="x"/>
+		<item value="804" key="width"/>
+		<item value="286" key="y"/>
+		<item value="457" key="height"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.model.property.order.ReorderDialog">
+		<item value="619" key="x"/>
+		<item value="682" key="width"/>
+		<item value="278" key="y"/>
+		<item value="473" key="height"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.editor.palette.dialogs.ImportArchiveDialog">
+		<item value="998" key="x"/>
+		<item value="700" key="width"/>
+		<item value="352" key="y"/>
+		<item value="505" key="height"/>
+		<list key="HISTORY_JAR_LIST">
+			<item value="C:\Program Files\Java\jcalendar-1.4\lib\jcalendar-1.4.jar"/>
+			<item value="C:/Users/ASUS/Documents/Eclispe/Polling App/jdatepicker-1.3.4.jar"/>
+		</list>
+	</section>
+	<section name="org.eclipse.wb.internal.core.editor.palette.dialogs.PaletteManagerDialog">
+		<item value="998" key="x"/>
+		<item value="700" key="width"/>
+		<item value="281" key="y"/>
+		<item value="647" key="height"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.model.property.editor.string.StringPropertyDialog">
+		<item value="610" key="x"/>
+		<item value="700" key="width"/>
+		<item value="295" key="y"/>
+		<item value="440" key="height"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.editor.palette.dialogs.CategoryAddDialog">
+		<item value="998" key="x"/>
+		<item value="700" key="width"/>
+		<item value="365" key="y"/>
+		<item value="480" key="height"/>
+	</section>
+</section>

@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;CollectionFramework/src/LinkedList.java&apos; to &apos;LinkedListP.java&apos;" description="Rename resource &apos;LinkedList.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/LinkedList.java" name="LinkedListP.java" stamp="1489287937337" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;CollectionFramework/src/SortedSetD.java&apos; to &apos;TreeSetD.java&apos;" description="Rename resource &apos;SortedSetD.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/SortedSetD.java" name="TreeSetD.java" stamp="1489302766701" updateReferences="true"/>
+</session>

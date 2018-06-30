@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;Polling App/src/WelcomeWindowVote.java&apos;" deleteContents="false" description="Delete resource &apos;Polling App/src/WelcomeWindowVote.java&apos;" element1="/Polling App/src/WelcomeWindowVote.java" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1499777378756"/>
+</session>

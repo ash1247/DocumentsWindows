@@ -1,0 +1,77 @@
+     1                                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     2                                  ;;
+     3                                  ;;
+     4                                  ;   Run: nasm -f elf64 -g -F dwarf 1.asm -l 1.lst
+     5                                  ;        ld -o 1 1.o
+     6                                  ;
+     7                                  ;       A program to read a char from keyboard and display it
+     8                                  ;
+     9                                  ;
+    10                                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    11                                  section .bss                       ; uninitialized data
+    12 00000000 <res 00000001>                  char resb 1
+    13                                  
+    14                                  section .data                      ;Section containing data
+    15                                  
+    16 00000000 456E7465722061206C-             msg1: db "Enter a lower case character: ", 10  ; Prompt message
+    17 00000009 6F7765722063617365-
+    18 00000012 206368617261637465-
+    19 0000001B 723A200A           
+    20                                          msg1Len equ $-msg1           ; Count Length of msg1
+    21                                          
+    22 0000001F 557070657263617365-             msg2: db "Uppercase: "     ; Output msg
+    23 00000028 3A20               
+    24                                          msg2Len equ $-msg2          ; Count length of msg2
+    25                                  
+    26 0000002A 200A                            newLine: db " ",10              ; newLine 
+    27                                          newLL equ $-newLine        ; newLine length
+    28                                          
+    29                                  section .text                      ; section containing code
+    30                                  
+    31                                  global _start                      ;linker initialized
+    32                                  
+    33                                  _start:                            ;entry point for linker
+    34 00000000 90                              nop                        ; For debugger
+    35                                          
+    36                                          ; user prompt
+    37 00000001 B804000000                      mov eax, 4                 ; initialize wr sys_call 
+    38 00000006 BB01000000                      mov ebx, 1                 
+    39 0000000B B9[00000000]                    mov ecx, msg1              ; Pass offset of the msg
+    40 00000010 BA1F000000                      mov edx, msg1Len           ; Pass the length of msg 
+    41 00000015 CD80                            int 80h                    ; Make kernel call,
+    42                                                                     ; 21h for windows, 80h for 
+    43                                                                     ; linux
+    44                                          
+    45                                          ; read and store the user input
+    46 00000017 B803000000                      mov eax, 3                 ; initialize rd sys_call                 
+    47 0000001C BB02000000                      mov ebx, 2
+    48 00000021 B9[00000000]                    mov ecx, char
+    49 00000026 BA01000000                      mov edx, 1                 ; 1 bytes of that info
+    50 0000002B CD80                            int 80h
+    51                                          
+    52                                          ; Output msg 
+    53 0000002D B804000000                      mov eax, 4                 ; initialize wr sys_call
+    54 00000032 BB01000000                      mov ebx, 1                 ;
+    55 00000037 B9[1F000000]                    mov ecx, msg2              ; Pass offset of the msg
+    56 0000003C BA0B000000                      mov edx, msg2Len           ; Pass the length of msg 
+    57 00000041 CD80                            int 80h                    ; Make kernel call
+    58                                          
+    59                                          ; Output char 
+    60 00000043 B804000000                      mov eax, 4                 ; initialize wr sys_call
+    61 00000048 BB01000000                      mov ebx, 1                 ;
+    62 0000004D B9[00000000]                    mov ecx, char              ; Pass offset of the char
+    63 00000052 67802920                        sub byte[ecx], 20h
+    64 00000056 BA01000000                      mov edx, 1                 ; Pass the length of char 
+    65 0000005B CD80                            int 80h                    ; Make kernel call
+    66                                          
+    67                                          ; add new line
+    68 0000005D B804000000                      mov eax, 4                 ; initialize wr sys_call
+    69 00000062 BB01000000                      mov ebx, 1                 ;
+    70 00000067 B9[2A000000]                    mov ecx, newLine           ; add newLine
+    71 0000006C BA02000000                      mov edx, newLL             ; length of newLine
+    72 00000071 CD80                            int 80h
+    73                                          
+    74                                          ; Exit
+    75 00000073 B801000000                      mov eax, 1                 ; Exit sys_call
+    76 00000078 BB00000000                      mov ebx, 0                 ; Return a code for zero
+    77 0000007D CD80                            int 80h                    ; Make kernel call 

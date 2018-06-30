@@ -1,0 +1,19 @@
+
+public class VoteCount {
+	
+	Voting voting = new Voting();
+	
+	protected int count = Voting.count;
+	protected int count1 = Voting.count1;
+	protected int count2 = Voting.count2;
+	protected int count3 = Voting.count3;
+	protected int count4 = Voting.count4;
+	protected int count5 = Voting.count5;
+	
+	
+	public void count1Percentage()
+	{
+		double percentage = (count1/count) * 100;
+	}
+	
+}

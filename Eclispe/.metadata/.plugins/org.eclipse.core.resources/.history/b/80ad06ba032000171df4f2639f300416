@@ -1,0 +1,205 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+
+public class ResultWindow extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ResultWindow frame = new ResultWindow();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ResultWindow() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Vote Summary");
+		setBounds(100, 100, 780, 741);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		JButton btnShowBarDiagram = new JButton("Show Bar Diagram");
+		
+		JButton btnShowPieDiagram = new JButton("Show Pie Diagram");
+		
+		JButton btnExit = new JButton("Exit");
+		
+		JLabel lblVotingResult = new JLabel("Voting Result");
+		lblVotingResult.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		
+		JLabel lblTopicOfVote = new JLabel("Topic Of Vote: ");
+		lblTopicOfVote.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTopicOfVote.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblTopic = new JLabel("Topic");
+		lblTopic.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTopic.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblOption1 = new JLabel("Option 1:");
+		lblOption1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOption1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblOption1Des = new JLabel("Option1Des");
+		lblOption1Des.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOption1Des.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblOption = new JLabel("Option 2:");
+		lblOption.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOption.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblOption_1 = new JLabel("Option 3:");
+		lblOption_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOption_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblOption_2 = new JLabel("Option 4:");
+		lblOption_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOption_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblOption_3 = new JLabel("Option 5:");
+		lblOption_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOption_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblOptiondes = new JLabel("Option2Des");
+		lblOptiondes.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOptiondes.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblOptiondes_1 = new JLabel("Option3Des");
+		lblOptiondes_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOptiondes_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblOptiondes_2 = new JLabel("Option4Des");
+		lblOptiondes_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOptiondes_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblOptiondes_3 = new JLabel("Option5Des");
+		lblOptiondes_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblOptiondes_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JLabel lblSummary = new JLabel("Summary");
+		lblSummary.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(276)
+					.addComponent(lblVotingResult)
+					.addContainerGap(337, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblTopicOfVote)
+					.addGap(18)
+					.addComponent(lblTopic, GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblOption, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+					.addComponent(lblOptiondes, GroupLayout.PREFERRED_SIZE, 607, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblOption_1, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+					.addComponent(lblOptiondes_1, GroupLayout.PREFERRED_SIZE, 607, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblOption_2, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+					.addComponent(lblOptiondes_2, GroupLayout.PREFERRED_SIZE, 607, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblOption1)
+					.addGap(41)
+					.addComponent(lblOption1Des, GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblOption_3, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+					.addComponent(lblOptiondes_3, GroupLayout.PREFERRED_SIZE, 607, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(613, Short.MAX_VALUE)
+					.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(22)
+					.addComponent(btnShowBarDiagram)
+					.addContainerGap(591, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnShowPieDiagram, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(601, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(335)
+					.addComponent(lblSummary)
+					.addContainerGap(361, Short.MAX_VALUE))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(lblVotingResult)
+					.addGap(25)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblTopicOfVote)
+						.addComponent(lblTopic, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE))
+					.addGap(36)
+					.addComponent(lblSummary)
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblOption1)
+						.addComponent(lblOption1Des, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
+					.addGap(28)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblOption, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblOptiondes, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
+					.addGap(29)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblOption_1, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblOptiondes_1, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
+					.addGap(29)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblOption_2, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblOptiondes_2, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
+					.addGap(29)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblOption_3, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblOptiondes_3, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addComponent(btnShowPieDiagram)
+							.addGap(4)
+							.addComponent(btnShowBarDiagram)
+							.addContainerGap())
+						.addComponent(btnExit, Alignment.TRAILING)))
+		);
+		contentPane.setLayout(gl_contentPane);
+	}
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Deitel7/src/DeackOfCardsTest.java&apos; to &apos;DeckOfCardsTest.java&apos;" description="Rename resource &apos;DeackOfCardsTest.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/DeackOfCardsTest.java" name="DeckOfCardsTest.java" stamp="1487305366787" updateReferences="true"/>
+</session>

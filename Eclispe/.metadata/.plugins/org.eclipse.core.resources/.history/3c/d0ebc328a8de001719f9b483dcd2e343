@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class Codeforces900B {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		double a = sc.nextDouble();
+		double b = sc.nextDouble();
+		int check = 0;
+		String c = sc.next();
+		double ans = a/b;
+		
+		String s = Double.toString(ans);
+		
+		System.out.println(s.indexOf(c));
+	}
+
+}
